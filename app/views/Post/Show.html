@@ -1,0 +1,16 @@
+{{set . "title" "Show Post"}}
+{{template "header.html" .}}
+
+<p>
+  <b>Title: </b>
+  {{ .post.Title}}
+</p>
+
+<p>
+  <b>Body: </b>
+  {{ .post.Body}}
+</p>
+
+<a href="{{url "Post.Edit" .post.Id}}" class="btn btn-link btn-sm">Edit</a>
+<a href="{{url "Post.Index"}}" class="btn btn-link btn-sm">Back</a>
+{{template "footer.html" .}}

@@ -1,0 +1,35 @@
+{{set . "title" "All Posts"}}
+{{template "header.html" .}}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>Created at</th>
+      <th>Updated at</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{range .posts}}
+      <tr>
+        <th scope="row">{{.Id}}</th>
+        <td>{{.Title}}</td>
+        <td><time>{{formatDate .CreatedAt}}</time></td>
+        <td><time>{{formatDate .UpdatedAt}}</time></td>
+        <td><a href="{{url "Post.Show" .Id}}" class="btn btn-link btn-sm">Show</a></td>
+        <td><a href="{{url "Post.Edit" .Id}}" class="btn btn-link btn-sm">Edit</a></td>
+        <td>
+          <form method="post" action="{{url "Post.Destroy" .Id}}">
+            <button type="submit" class="btn btn-link btn-sm">Destroy</button>
+          </form>
+        </td>
+      </tr>
+    {{end}}
+  </tbody>
+</table>
+<p><a href="{{url "Post.New" }}" class="btn btn-link btn-sm">New Post</a></p>
+{{template "footer.html" .}}

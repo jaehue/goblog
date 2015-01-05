@@ -1,0 +1,24 @@
+{{set . "title" "New Post"}}
+{{template "header.html" .}}
+
+<form method="POST" action="{{url "Post.Create"}}">
+  {{$post := .post}}
+  {{with $field := field "title" .}}
+    <div class="form-group {{$field.ErrorClass}}">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" name="{{$field.Name}}" placeholder="Enter title" value="{{if $field.Flash}}{{$field.Flash}}{{else}}{{$post.Title}}{{end}}"/>
+    </div>
+  {{end}}
+
+  {{with $field := field "body" .}}
+    <div class="form-group {{$field.ErrorClass}}">
+      <label for="title">Body</label>
+      <textarea class="form-control" id="body" name="{{$field.Name}}" rows="3" value="{{if $field.Flash}}{{$field.Flash}}{{else}}{{$post.Body}}{{end}}"></textarea>
+    </div>
+  {{end}}
+  <button type="submit" name="publish" class="btn btn-default btn-sm">Create Post</button>
+</form>
+
+<a href="{{url "Post.Index"}}" class="btn btn-link btn-sm">Back</a>
+
+{{template "footer.html" .}}
