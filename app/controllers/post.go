@@ -26,6 +26,22 @@ func getPost(txn *sql.Tx, id int) (models.Post, error) {
 	case err != nil:
 		return post, err
 	}
+
+	var comments []models.Comment
+	rows, err := txn.Query("select id, body, commenter, post_id, created_at, updated_at from comments where post_id=? order by created_at desc", id)
+	if err != nil {
+		panic(err)
+	}
+
+	for rows.Next() {
+		comment := models.Comment{}
+		if err := rows.Scan(&comment.Id, &comment.Body, &comment.Commenter, &comment.PostId, &comment.CreatedAt, &comment.UpdatedAt); err != nil {
+			panic(err)
+		}
+		comments = append(comments, comment)
+	}
+	post.Comments = comments
+
 	return post, nil
 }
 
