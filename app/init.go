@@ -1,6 +1,9 @@
 package app
 
-import "github.com/revel/revel"
+import (
+	"github.com/revel/revel"
+	"time"
+)
 
 func init() {
 	// Filters is the default set of global filters.
@@ -18,6 +21,9 @@ func init() {
 		revel.CompressFilter,          // Compress the result.
 		revel.ActionInvoker,           // Invoke the action.
 	}
+
+	// date formatting
+	revel.TemplateFuncs["formatDate"] = func(date time.Time) string { return date.Format("Jan 02, 2006 at 3:04pm") }
 
 	// register startup functions with OnAppStart
 	// ( order dependent )
