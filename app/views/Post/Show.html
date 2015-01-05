@@ -11,6 +11,39 @@
   {{ .post.Body}}
 </p>
 
+<h4>Comments: </h4>
+<dl>
+  {{range .post.Comments}}
+    <dt><mark>{{.Commenter}}</mark> <small class="text-muted">{{formatDate .CreatedAt}}</small></dt>
+    <dd>{{.Body}}</dd>
+  {{end}}
+</dl>
+
+<h4>Add a comment:</h4>
+<form class="form-horizontal" method="POST" action="{{url "Comment.Create" .post.Id}}">  
+  <div class="form-group">
+    {{with $field := field "commenter" .}}
+      <label class="col-xs-2 control-label" for="commenter">Name</label>
+      <div class="col-xs-10">
+        <input type="text" class="form-control" id="commenter" name="{{$field.Name}}" placeholder="Commenter"/>
+      </div>
+    {{end}}
+  </div>
+  <div class="form-group">
+    {{with $field := field "body" .}}
+      <label class="col-xs-2 control-label" for="body">Body</label>
+      <div class="col-xs-10">
+        <input type="text" class="form-control" id="body" name="{{$field.Name}}" placeholder="Body"/>
+      </div>
+    {{end}}
+  </div>
+  <div class="form-group">
+    <div class="col-xs-offset-2 col-xs-10">
+      <button type="submit" class="btn btn-default">Add comment</button>
+    </div>
+  </div>
+</form>
+
 <a href="{{url "Post.Edit" .post.Id}}" class="btn btn-link btn-sm">Edit</a>
 <a href="{{url "Post.Index"}}" class="btn btn-link btn-sm">Back</a>
 {{template "footer.html" .}}
