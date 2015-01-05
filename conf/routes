@@ -17,6 +17,9 @@ POST    /posts/delete/:id                       Post.Destroy
 DELETE  /posts/:id                              Post.Destroy
 GET     /posts/:id/edit                         Post.Edit
 
+# Comment
+POST    /posts/:postId/comments                 Comment.Create
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 
