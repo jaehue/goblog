@@ -15,6 +15,15 @@ CREATE TABLE IF NOT EXISTS posts (
     created_at  DATETIME            NOT NULL,
     updated_at  DATETIME            NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS comments (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    body        TEXT                NOT NULL,
+    commenter   TEXT                NOT NULL,
+    post_id     INT                 NOT NULL,
+    created_at  DATETIME            NOT NULL,
+    updated_at  DATETIME            NOT NULL
+);
 `
 	db.Db.Exec(schema)
 }
