@@ -27,8 +27,13 @@ func getPost(txn *sql.Tx, id int) (models.Post, error) {
 		return post, err
 	}
 
-	var comments []models.Comment
-	rows, err := txn.Query("select id, body, commenter, post_id, created_at, updated_at from comments where post_id=? order by created_at desc", id)
+	post.Comments = getComments(txn, id)
+
+	return post, nil
+}
+
+func getComments(txn *sql.Tx, postId int) (comments []models.Comment) {
+	rows, err := txn.Query("select id, body, commenter, post_id, created_at, updated_at from comments where post_id=? order by created_at desc", postId)
 	if err != nil {
 		panic(err)
 	}
@@ -40,9 +45,7 @@ func getPost(txn *sql.Tx, id int) (models.Post, error) {
 		}
 		comments = append(comments, comment)
 	}
-	post.Comments = comments
-
-	return post, nil
+	return
 }
 
 func (c Post) Index() revel.Result {
