@@ -6,6 +6,17 @@ module:testrunner
 
 GET     /                                       Home.Index
 
+# Post
+GET     /posts                                  Post.Index
+POST    /posts                                  Post.Create
+GET     /posts/new                              Post.New
+GET     /posts/:id                              Post.Show
+POST    /posts/:id                              Post.Update
+PUT     /posts/:id                              Post.Update
+POST    /posts/delete/:id                       Post.Destroy
+DELETE  /posts/:id                              Post.Destroy
+GET     /posts/:id/edit                         Post.Edit
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 
