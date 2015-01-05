@@ -4,11 +4,11 @@ import (
 	"time"
 )
 
-type Post struct {
+type Comment struct {
 	Id        int
-	Title     string
 	Body      string
+	Commenter string
+	PostId    int
 	CreatedAt time.Time
 	UpdatedAt time.Time
-	Comments  []Comment
 }
