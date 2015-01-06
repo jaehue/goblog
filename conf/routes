@@ -13,7 +13,7 @@ GET     /posts/new                              Post.New
 GET     /posts/:id                              Post.Show
 POST    /posts/:id                              Post.Update
 PUT     /posts/:id                              Post.Update
-POST    /posts/delete/:id                       Post.Destroy
+POST    /posts/:id/delete                       Post.Destroy
 DELETE  /posts/:id                              Post.Destroy
 GET     /posts/:id/edit                         Post.Edit
 
