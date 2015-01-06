@@ -1,0 +1,11 @@
+{{range .post.Comments}}
+  <p>
+    <mark>
+      <b>{{.Commenter}}:</b>
+    </mark>
+    {{.Body}}
+    <small class="text-muted">
+      ({{formatDate .CreatedAt}})
+    </small>
+  </p>
+{{end}}
