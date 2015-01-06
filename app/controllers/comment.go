@@ -20,3 +20,10 @@ func (c Comment) Create(postId int, body, commenter string) revel.Result {
 
 	return c.Redirect(routes.Post.Show(postId))
 }
+
+func (c Comment) Destroy(postId, id int) revel.Result {
+	if _, err := c.Txn.Exec("delete from comments where id=?", id); err != nil {
+		panic(err)
+	}
+	return c.Redirect(routes.Post.Show(postId))
+}
