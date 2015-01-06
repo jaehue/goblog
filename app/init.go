@@ -23,7 +23,7 @@ func init() {
 	}
 
 	// date formatting
-	revel.TemplateFuncs["formatDate"] = func(date time.Time) string { return date.Format("Jan 02, 2006 at 3:04pm") }
+	revel.TemplateFuncs["formatDate"] = func(date time.Time) string { return date.Format("2006/01/02 03:04") }
 
 	// register startup functions with OnAppStart
 	// ( order dependent )
