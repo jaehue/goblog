@@ -1,11 +1,15 @@
+{{$post := .post}}
 {{range .post.Comments}}
   <p>
-    <mark>
-      <b>{{.Commenter}}:</b>
-    </mark>
-    {{.Body}}
-    <small class="text-muted">
-      ({{formatDate .CreatedAt}})
-    </small>
+    <form class="form-inline" method="POST" action="{{url "Comment.Destroy" $post.Id .Id}}">
+      <mark>
+        <b>{{.Commenter}}:</b>
+      </mark>
+      {{.Body}}
+      <small class="text-muted">
+        ({{formatDate .CreatedAt}})
+      </small>
+      <button type="submit" class="btn btn-link btn-sm">Destroy</button>
+    </form>
   </p>
 {{end}}
