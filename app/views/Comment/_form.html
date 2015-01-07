@@ -1,7 +1,7 @@
-<form class="form-horizontal" method="POST" action="{{url "Comment.Create" .post.Id}}">  
+<form class="form-horizontal" method="POST" action="{{url "Comment.Create" .post.Id}}">
   <div class="form-group">
     {{with $field := field "commenter" .}}
-      <label class="col-xs-2 control-label" for="commenter">Name</label>
+      <label class="col-xs-2 control-label" for="commenter"><small>Name</small></label>
       <div class="col-xs-10">
         <input type="text" class="form-control" id="commenter" name="{{$field.Name}}" placeholder="Commenter"/>
       </div>
@@ -9,7 +9,7 @@
   </div>
   <div class="form-group">
     {{with $field := field "body" .}}
-      <label class="col-xs-2 control-label" for="body">Body</label>
+      <label class="col-xs-2 control-label" for="body"><small>Body</small></label>
       <div class="col-xs-10">
         <input type="text" class="form-control" id="body" name="{{$field.Name}}" placeholder="Body"/>
       </div>

@@ -4,15 +4,33 @@
   <head>
     <title>{{.title}}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    
     <link rel="shortcut icon" type="image/png" href="/public/img/favicon.png">
-    <script src="/public/js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+    {{append . "moreStyles" "css/theme.css"}}
     {{range .moreStyles}}
       <link rel="stylesheet" type="text/css" href="/public/{{.}}">
     {{end}}
     {{range .moreScripts}}
       <script src="/public/{{.}}" type="text/javascript" charset="utf-8"></script>
     {{end}}
-  </head>
-  <body>
+  </head>  
+  <body role="document" data-pinterest-extension-installed="cr1.35" data-feedly-mini="yes">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Go Blog </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <div class="nav pull-right">
+            <p class="navbar-text">{{.session.username}}</p>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="container theme-showcase" role="main">
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+        

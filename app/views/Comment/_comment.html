@@ -2,9 +2,7 @@
 {{range .post.Comments}}
   <p>
     <form class="form-inline" method="POST" action="{{url "Comment.Destroy" $post.Id .Id}}">
-      <mark>
-        <b>{{.Commenter}}:</b>
-      </mark>
+      <b><mark>{{.Commenter}}</mark> :</b>
       {{.Body}}
       <small class="text-muted">
         ({{formatDate .CreatedAt}})

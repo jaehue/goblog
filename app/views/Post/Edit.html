@@ -1,6 +1,10 @@
 {{set . "title" "Edit Post"}}
 {{template "header.html" .}}
 
+<div class="page-header">
+  <h1>Edit Post</h1>
+</div>
+
 {{template "Post/_form.html" .}}
 
 <a href="{{url "Post.Show" .post.Id}}" class="btn btn-link btn-sm">Show</a>

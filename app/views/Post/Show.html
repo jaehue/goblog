@@ -1,22 +1,32 @@
 {{set . "title" "Show Post"}}
+{{append . "moreStyles" "css/blog.css"}}
 {{template "header.html" .}}
 
-<p>
-  <b>Title: </b>
-  {{ .post.Title}}
-</p>
+<div class="blog-post">
+  <h2 class="blog-post-title">{{.post.Title}}</h2>
+  <p class="blog-post-meta">{{formatDate .post.CreatedAt}}</p>
 
-<p>
-  <b>Body: </b>
-  {{ .post.Body}}
-</p>
+  <p>
+    {{.post.Body}}
+  </p>
+  
+  <form method="post" action="{{url "Post.Destroy" .post.Id}}">
+    <button type="submit" class="btn btn-link btn-sm pull-right">Destroy</button>
+  </form> 
+  <a href="{{url "Post.Edit" .post.Id}}" class="btn btn-link btn-sm pull-right">Edit</a>  
+</div>
 
-<h4>Comments: </h4>
+<hr>
 {{template "Comment/_comment.html" .}}
-
-<h4>Add a comment:</h4>
+<hr>
+<div class="well well-lg">
 {{template "Comment/_form.html" .}}
+</div>
 
-<a href="{{url "Post.Edit" .post.Id}}" class="btn btn-link btn-sm">Edit</a>
-<a href="{{url "Post.Index"}}" class="btn btn-link btn-sm">Back</a>
+<nav>
+  <ul class="pager">
+    <li><a href="{{url "Post.Index"}}">Back</a></li>
+  </ul>
+</nav>
+
 {{template "footer.html" .}}
