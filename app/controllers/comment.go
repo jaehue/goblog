@@ -12,6 +12,15 @@ type Comment struct {
 	db.Transactional
 }
 
+func (c Comment) CheckUser() revel.Result {
+	_, ok := c.Session["username"]
+	if !ok {
+		c.Flash.Error("Please log in first")
+		return c.Redirect(App.Login)
+	}
+	return nil
+}
+
 func (c Comment) Create(postId int, body, commenter string) revel.Result {
 	_, err := c.Txn.Exec("insert into comments(body, commenter, post_id, created_at, updated_at) values(?,?,?,?,?)", body, commenter, postId, time.Now(), time.Now())
 	if err != nil {

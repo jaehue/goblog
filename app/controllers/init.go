@@ -30,4 +30,6 @@ CREATE TABLE IF NOT EXISTS comments (
 
 func init() {
 	revel.OnAppStart(InitDB)
+	revel.InterceptMethod(Post.CheckUser, revel.BEFORE)
+	revel.InterceptMethod(Comment.CheckUser, revel.BEFORE)
 }

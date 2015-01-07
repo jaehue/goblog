@@ -15,6 +15,19 @@ type Post struct {
 	db.Transactional
 }
 
+func (c Post) CheckUser() revel.Result {
+	switch c.MethodName {
+	case "Index", "Show":
+		return nil
+	}
+	_, ok := c.Session["username"]
+	if !ok {
+		c.Flash.Error("Please log in first")
+		return c.Redirect(App.Login)
+	}
+	return nil
+}
+
 func getPost(txn *sql.Tx, id int) (models.Post, error) {
 	post := models.Post{}
 	err := txn.QueryRow("select id, title, body, created_at, updated_at from posts where id=?", id).
