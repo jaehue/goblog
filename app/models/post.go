@@ -5,10 +5,10 @@ import (
 )
 
 type Post struct {
-	Id        int
+	Id        int64
 	Title     string
 	Body      string
 	CreatedAt time.Time
 	UpdatedAt time.Time
-	Comments  []Comment
+	Comments  []Comment // One-To-Many relationship (has many)
 }
