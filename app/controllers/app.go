@@ -1,12 +1,13 @@
 package controllers
 
 import (
+	"code.google.com/p/go.crypto/bcrypt"
 	"github.com/revel/revel"
 	"goblog/app/models"
 )
 
 type App struct {
-	*revel.Controller
+	GormController
 }
 
 func (c App) Login() revel.Result {
@@ -14,8 +15,11 @@ func (c App) Login() revel.Result {
 }
 
 func (c App) Signin(username, password string) revel.Result {
-	user := c.getUser(username)
-	if user != nil && user.Password == password {
+	var user models.User
+	c.Txn.Where(&models.User{Username: username}).First(&user)
+
+	err := bcrypt.CompareHashAndPassword(user.Password, []byte(password))
+	if err == nil {
 		c.Session["username"] = user.Username
 		c.Session["role"] = user.Role
 		c.Session["name"] = user.Name
@@ -30,15 +34,4 @@ func (c App) Signin(username, password string) revel.Result {
 	c.Flash.Out["username"] = username
 	c.Flash.Error("Login failed")
 	return c.Redirect(Home.Index)
-}
-
-func (c App) getUser(username string) *models.User {
-	switch username {
-	case "admin":
-		return &models.User{Name: "Admin", Username: "admin", Role: "admin", Password: "admin"}
-	case "user":
-		return &models.User{Name: "User", Username: "user", Role: "user", Password: "user"}
-	default:
-		return nil
-	}
 }

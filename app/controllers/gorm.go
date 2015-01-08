@@ -1,20 +1,24 @@
 package controllers
 
 import (
+	"code.google.com/p/go.crypto/bcrypt"
 	"github.com/jinzhu/gorm"
 	"github.com/revel/revel"
+	"goblog/app/models"
 )
 
 var (
 	db gorm.DB
 )
 
+const DefaultName, DefaultRole, DefaultUsername, DefaultPassword = "Admin", "admin", "admin", "admin"
+
 type GormController struct {
 	*revel.Controller
 	Txn *gorm.DB
 }
 
-func IntiDB() {
+func InitDB() {
 	var (
 		driver, spec string
 		found        bool
@@ -34,6 +38,18 @@ func IntiDB() {
 	if err != nil {
 		revel.ERROR.Fatal(err)
 	}
+
+	// Enable Logger
+	db.LogMode(true)
+	migrate()
+}
+
+func migrate() {
+	db.AutoMigrate(&models.Post{}, &models.Comment{}, &models.User{})
+	bcryptPassword, _ := bcrypt.GenerateFromPassword([]byte(DefaultPassword), bcrypt.DefaultCost)
+	db.Where(models.User{Name: DefaultName, Role: DefaultRole, Username: DefaultUsername}).
+		Attrs(models.User{Password: bcryptPassword}).
+		FirstOrCreate(&models.User{})
 }
 
 // Begin a transaction
@@ -46,6 +62,7 @@ func (c *GormController) Begin() revel.Result {
 func (c *GormController) Rollback() revel.Result {
 	if c.Txn != nil {
 		c.Txn.Rollback()
+		c.Txn = nil
 	}
 	return nil
 }
@@ -60,6 +77,7 @@ func (c *GormController) Commit() revel.Result {
 }
 
 func init() {
+	revel.OnAppStart(InitDB)
 	revel.InterceptMethod((*GormController).Begin, revel.BEFORE)
 	revel.InterceptMethod((*GormController).Commit, revel.AFTER)
 	revel.InterceptMethod((*GormController).Rollback, revel.FINALLY)
