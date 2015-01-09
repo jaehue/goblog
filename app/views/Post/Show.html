@@ -1,6 +1,5 @@
 {{set . "title" "Show Post"}}
-{{append . "moreStyles" "css/blog.css"}}
-{{template "header.html" .}}
+{{template "top.html" .}}
 
 <div class="blog-post">
   <h2 class="blog-post-title">{{.post.Title}}</h2>
@@ -9,11 +8,13 @@
   <p>
     {{.post.Body}}
   </p>
-  
-  <form method="post" action="{{url "Post.Destroy" .post.Id}}">
-    <button type="submit" class="btn btn-link btn-sm pull-right">Destroy</button>
-  </form> 
-  <a href="{{url "Post.Edit" .post.Id}}" class="btn btn-link btn-sm pull-right">Edit</a>  
+
+  {{if .session.isAdmin }}
+    <form method="post" action="{{url "Post.Destroy" .post.Id}}">
+      <button type="submit" class="btn btn-link btn-sm pull-right">Destroy</button>
+    </form> 
+    <a href="{{url "Post.Edit" .post.Id}}" class="btn btn-link btn-sm pull-right">Edit</a>
+  {{end}}
 </div>
 
 <hr>
@@ -29,4 +30,4 @@
   </ul>
 </nav>
 
-{{template "footer.html" .}}
+{{template "bottom.html" .}}

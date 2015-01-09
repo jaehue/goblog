@@ -1,4 +1,5 @@
 {{$post := .post}}
+{{$isAdmin := .session.isAdmin}}
 {{range .post.Comments}}
   <p>
     <form class="form-inline" method="POST" action="{{url "Comment.Destroy" $post.Id .Id}}">
@@ -7,7 +8,9 @@
       <small class="text-muted">
         ({{formatDate .CreatedAt}})
       </small>
-      <button type="submit" class="btn btn-link btn-sm">Destroy</button>
+      {{if $isAdmin }}
+        <button type="submit" class="btn btn-link btn-sm">Destroy</button>
+      {{end}}
     </form>
   </p>
 {{end}}

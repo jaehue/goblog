@@ -1,0 +1,11 @@
+      </div><!-- /.main -->
+      <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+        {{template "side.html" .}}
+      </div><!-- /.sidebar -->
+
+    </div>
+
+{{if eq .RunMode "dev"}}
+  {{template "debug.html" .}}
+{{end}}
+{{template "footer.html" .}}

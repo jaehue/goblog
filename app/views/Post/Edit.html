@@ -1,5 +1,5 @@
 {{set . "title" "Edit Post"}}
-{{template "header.html" .}}
+{{template "top.html" .}}
 
 <div class="page-header">
   <h1>Edit Post</h1>
@@ -10,4 +10,4 @@
 <a href="{{url "Post.Show" .post.Id}}" class="btn btn-link btn-sm">Show</a>
 <a href="{{url "Post.Index"}}" class="btn btn-link btn-sm">Back</a>
 
-{{template "footer.html" .}}
+{{template "bottom.html" .}}

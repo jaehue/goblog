@@ -1,6 +1,5 @@
 {{set . "title" "All Posts"}}
-{{append . "moreStyles" "css/blog.css"}}
-{{template "header.html" .}}
+{{template "top.html" .}}
 
 {{range .posts}}
   <div class="blog-post">
@@ -13,10 +12,12 @@
   </div>
 {{end}}
 
-<nav>
-  <ul class="pager">
-    <li><a href="{{url "Post.New"}}">New</a></li>
-  </ul>
-</nav>
+{{if .session.isAdmin }}
+  <nav>
+    <ul class="pager">
+      <li><a href="{{url "Post.New"}}">New</a></li>
+    </ul>
+  </nav>
+{{end}}
 
-{{template "footer.html" .}}
+{{template "bottom.html" .}}
