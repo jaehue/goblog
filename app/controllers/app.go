@@ -23,6 +23,9 @@ func (c App) CreateSession(username, password string) revel.Result {
 		c.Session["username"] = user.Username
 		c.Session["role"] = user.Role
 		c.Session["name"] = user.Name
+		if user.Role == "admin" {
+			c.Session["isAdmin"] = "true"
+		}
 		c.Flash.Success("Welcome, " + user.Name)
 		return c.Redirect(Post.Index)
 	}
@@ -33,5 +36,13 @@ func (c App) CreateSession(username, password string) revel.Result {
 	}
 	c.Flash.Out["username"] = username
 	c.Flash.Error("Login failed")
+	return c.Redirect(Home.Index)
+}
+
+func (c App) DestroySession() revel.Result {
+	// clear session
+	for k := range c.Session {
+		delete(c.Session, k)
+	}
 	return c.Redirect(Home.Index)
 }

@@ -7,6 +7,8 @@ module:testrunner
 GET     /                                       Home.Index
 GET     /login                                  App.Login
 POST    /login                                  App.CreateSession
+GET     /logout                                 App.DestroySession
+DELETE  /logout                                 App.DestroySession
 
 # Post
 GET     /posts                                  Post.Index
