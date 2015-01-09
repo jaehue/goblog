@@ -14,7 +14,7 @@ func (c App) Login() revel.Result {
 	return c.Render()
 }
 
-func (c App) Signin(username, password string) revel.Result {
+func (c App) CreateSession(username, password string) revel.Result {
 	var user models.User
 	c.Txn.Where(&models.User{Username: username}).First(&user)
 

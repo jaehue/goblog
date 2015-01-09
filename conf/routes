@@ -6,7 +6,7 @@ module:testrunner
 
 GET     /                                       Home.Index
 GET     /login                                  App.Login
-POST    /signin                                 App.Signin
+POST    /login                                  App.CreateSession
 
 # Post
 GET     /posts                                  Post.Index
