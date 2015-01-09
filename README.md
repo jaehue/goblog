@@ -1,6 +1,7 @@
 # goblog
 
-Simple blog using golang
+Simple blog using golang   
+**THIS IS A PRE-RELEASE VERSION!!**
 
 ## Getting started
 
