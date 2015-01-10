@@ -10,9 +10,7 @@
   </p>
 
   {{if isAdmin .currentUser}}
-    <form method="post" action="{{url "Post.Destroy" .post.Id}}">
-      <button type="submit" class="btn btn-link btn-sm pull-right">Destroy</button>
-    </form> 
+    <a href="{{url "Post.Destroy" .post.Id}}" class="btn btn-link btn-sm pull-right">Destroy</a>
     <a href="{{url "Post.Edit" .post.Id}}" class="btn btn-link btn-sm pull-right">Edit</a>
   {{end}}
 </div>

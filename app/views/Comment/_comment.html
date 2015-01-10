@@ -2,15 +2,13 @@
 {{$currentUser := .currentUser}}
 {{range .post.Comments}}
   <p>
-    <form class="form-inline" method="POST" action="{{url "Comment.Destroy" $post.Id .Id}}">
-      <b><mark>{{.Commenter}}</mark> :</b>
-      {{.Body}}
-      <small class="text-muted">
-        ({{formatDate .CreatedAt}})
-      </small>
-      {{if isAdmin $currentUser}}
-        <button type="submit" class="btn btn-link btn-sm">Destroy</button>
-      {{end}}
-    </form>
+    <b><mark>{{.Commenter}}</mark> :</b>
+    {{.Body}}
+    <small class="text-muted">
+      ({{formatDate .CreatedAt}})
+    </small>
+    {{if isAdmin $currentUser}}
+    <a href="{{url "Comment.Destroy" $post.Id .Id}}" class="btn btn-link btn-sm">Destroy</a>
+    {{end}}
   </p>
 {{end}}

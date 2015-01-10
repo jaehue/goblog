@@ -13,13 +13,13 @@ GET     /posts/new                              Post.New
 GET     /posts/:id                              Post.Show
 POST    /posts/:id                              Post.Update
 PUT     /posts/:id                              Post.Update
-POST    /posts/:id/delete                       Post.Destroy
+GET     /posts/:id/delete                       Post.Destroy
 DELETE  /posts/:id                              Post.Destroy
 GET     /posts/:id/edit                         Post.Edit
 
 # Comment
 POST    /posts/:postId/comments                 Comment.Create
-POST    /posts/:postId/comments/:id/delete      Comment.Destroy
+GET     /posts/:postId/comments/:id/delete      Comment.Destroy
 DELETE  /posts/:postId/comments/:id             Comment.Destroy
 
 # User
