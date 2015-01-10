@@ -9,7 +9,7 @@
     {{.post.Body}}
   </p>
 
-  {{if .session.isAdmin }}
+  {{if isAdmin .currentUser}}
     <form method="post" action="{{url "Post.Destroy" .post.Id}}">
       <button type="submit" class="btn btn-link btn-sm pull-right">Destroy</button>
     </form> 

@@ -32,11 +32,12 @@
           </ul>
           <div class="nav pull-right">
             {{if .session.username}}
-            <p class="navbar-text">{{.session.username}} <a href="{{url "App.DestroySession"}}">[Logout]</a></p>
+            <p class="navbar-text"><a href="{{url "User.Edit"}}">{{.session.username}}</a></p>
             {{else}}
-            <p class="navbar-text"><a href="{{url "App.CreateSession"}}">Login</a></p>
+            <p class="navbar-text"><a href="{{url "User.CreateSession"}}">Login</a></p>
             {{end}}
           </div>
         </div>
       </div>
-    </nav>    
+    </nav>
+    {{template "flash.html" .}}

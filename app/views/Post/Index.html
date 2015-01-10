@@ -12,7 +12,7 @@
   </div>
 {{end}}
 
-{{if .session.isAdmin }}
+{{if isAdmin .currentUser }}
   <nav>
     <ul class="pager">
       <li><a href="{{url "Post.New"}}">New</a></li>
