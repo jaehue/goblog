@@ -2,6 +2,7 @@ package app
 
 import (
 	"github.com/revel/revel"
+	"goblog/app/models"
 	"time"
 )
 
@@ -23,7 +24,13 @@ func init() {
 	}
 
 	// date formatting
-	revel.TemplateFuncs["formatDate"] = func(date time.Time) string { return date.Format("2006/01/02 03:04") }
+	revel.TemplateFuncs["formatDate"] = func(date time.Time) string {
+		return date.Format("2006/01/02 03:04")
+	}
+
+	revel.TemplateFuncs["isAdmin"] = func(currentUser *models.User) bool {
+		return currentUser != nil && currentUser.Role == "admin"
+	}
 
 	// register startup functions with OnAppStart
 	// ( order dependent )
