@@ -30,35 +30,6 @@ func (_ tGormController) Commit(
 }
 
 
-type tStatic struct {}
-var Static tStatic
-
-
-func (_ tStatic) Serve(
-		prefix string,
-		filepath string,
-		) string {
-	args := make(map[string]string)
-	
-	revel.Unbind(args, "prefix", prefix)
-	revel.Unbind(args, "filepath", filepath)
-	return revel.MainRouter.Reverse("Static.Serve", args).Url
-}
-
-func (_ tStatic) ServeModule(
-		moduleName string,
-		prefix string,
-		filepath string,
-		) string {
-	args := make(map[string]string)
-	
-	revel.Unbind(args, "moduleName", moduleName)
-	revel.Unbind(args, "prefix", prefix)
-	revel.Unbind(args, "filepath", filepath)
-	return revel.MainRouter.Reverse("Static.ServeModule", args).Url
-}
-
-
 type tTestRunner struct {}
 var TestRunner tTestRunner
 
@@ -89,9 +60,86 @@ func (_ tTestRunner) List(
 }
 
 
+type tStatic struct {}
+var Static tStatic
+
+
+func (_ tStatic) Serve(
+		prefix string,
+		filepath string,
+		) string {
+	args := make(map[string]string)
+	
+	revel.Unbind(args, "prefix", prefix)
+	revel.Unbind(args, "filepath", filepath)
+	return revel.MainRouter.Reverse("Static.Serve", args).Url
+}
+
+func (_ tStatic) ServeModule(
+		moduleName string,
+		prefix string,
+		filepath string,
+		) string {
+	args := make(map[string]string)
+	
+	revel.Unbind(args, "moduleName", moduleName)
+	revel.Unbind(args, "prefix", prefix)
+	revel.Unbind(args, "filepath", filepath)
+	return revel.MainRouter.Reverse("Static.ServeModule", args).Url
+}
+
+
 type tApp struct {}
 var App tApp
 
+
+
+type tComment struct {}
+var Comment tComment
+
+
+func (_ tComment) CheckUser(
+		) string {
+	args := make(map[string]string)
+	
+	return revel.MainRouter.Reverse("Comment.CheckUser", args).Url
+}
+
+func (_ tComment) Create(
+		postId int,
+		body string,
+		commenter string,
+		) string {
+	args := make(map[string]string)
+	
+	revel.Unbind(args, "postId", postId)
+	revel.Unbind(args, "body", body)
+	revel.Unbind(args, "commenter", commenter)
+	return revel.MainRouter.Reverse("Comment.Create", args).Url
+}
+
+func (_ tComment) Destroy(
+		postId int,
+		id int,
+		) string {
+	args := make(map[string]string)
+	
+	revel.Unbind(args, "postId", postId)
+	revel.Unbind(args, "id", id)
+	return revel.MainRouter.Reverse("Comment.Destroy", args).Url
+}
+
+
+type tHome struct {}
+var Home tHome
+
+
+func (_ tHome) Index(
+		) string {
+	args := make(map[string]string)
+	
+	return revel.MainRouter.Reverse("Home.Index", args).Url
+}
 
 
 type tPost struct {}
@@ -227,54 +275,6 @@ func (_ tUser) DestroySession(
 	args := make(map[string]string)
 	
 	return revel.MainRouter.Reverse("User.DestroySession", args).Url
-}
-
-
-type tComment struct {}
-var Comment tComment
-
-
-func (_ tComment) CheckUser(
-		) string {
-	args := make(map[string]string)
-	
-	return revel.MainRouter.Reverse("Comment.CheckUser", args).Url
-}
-
-func (_ tComment) Create(
-		postId int,
-		body string,
-		commenter string,
-		) string {
-	args := make(map[string]string)
-	
-	revel.Unbind(args, "postId", postId)
-	revel.Unbind(args, "body", body)
-	revel.Unbind(args, "commenter", commenter)
-	return revel.MainRouter.Reverse("Comment.Create", args).Url
-}
-
-func (_ tComment) Destroy(
-		postId int,
-		id int,
-		) string {
-	args := make(map[string]string)
-	
-	revel.Unbind(args, "postId", postId)
-	revel.Unbind(args, "id", id)
-	return revel.MainRouter.Reverse("Comment.Destroy", args).Url
-}
-
-
-type tHome struct {}
-var Home tHome
-
-
-func (_ tHome) Index(
-		) string {
-	args := make(map[string]string)
-	
-	return revel.MainRouter.Reverse("Home.Index", args).Url
 }
 
 
