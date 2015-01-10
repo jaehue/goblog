@@ -2,7 +2,7 @@
 
 A fast and simple blog with [Revel](http://revel.github.io/) framework in Golang
 
-Current version is 0.1.0 on 2015.01.10
+Current version is **0.1.0** on 2015.01.10
 
 ## Getting started
 
@@ -40,6 +40,13 @@ $ git clone git@github.com:jaehue/goblog.git
 ```
 $ revel run goblog
 ```
+- Default user information
+  - Username: admin
+  - Name: Admin
+  - Role: admin
+  - Password: admin
+
+**YOU MUST CHANGE DEFAULT PASSWROD**
 
 ## Questions
 
