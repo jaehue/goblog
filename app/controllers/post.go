@@ -7,7 +7,7 @@ import (
 )
 
 type Post struct {
-	GormController
+	App
 }
 
 func (c Post) CheckUser() revel.Result {
@@ -15,10 +15,16 @@ func (c Post) CheckUser() revel.Result {
 	case "Index", "Show":
 		return nil
 	}
-	_, ok := c.Session["username"]
-	if !ok {
+
+	if c.CurrentUser == nil {
 		c.Flash.Error("Please log in first")
-		return c.Redirect(App.Login)
+		return c.Redirect(User.Login)
+	}
+
+	if c.CurrentUser.Role != "admin" {
+		c.Response.Status = 401 // Unauthorized
+		c.Flash.Error("You are not admin")
+		return c.Redirect(User.Login)
 	}
 	return nil
 }
