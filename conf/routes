@@ -5,10 +5,6 @@
 module:testrunner
 
 GET     /                                       Home.Index
-GET     /login                                  App.Login
-POST    /login                                  App.CreateSession
-GET     /logout                                 App.DestroySession
-DELETE  /logout                                 App.DestroySession
 
 # Post
 GET     /posts                                  Post.Index
@@ -25,6 +21,17 @@ GET     /posts/:id/edit                         Post.Edit
 POST    /posts/:postId/comments                 Comment.Create
 POST    /posts/:postId/comments/:id/delete      Comment.Destroy
 DELETE  /posts/:postId/comments/:id             Comment.Destroy
+
+# User
+GET     /users/edit                             User.Edit
+POST    /users/update                           User.Update
+PUT     /users                                  User.Update
+GET     /login                                  User.Login
+POST    /login                                  User.CreateSession
+GET     /logout                                 User.DestroySession
+DELETE  /logout                                 User.DestroySession
+
+
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
