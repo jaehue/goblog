@@ -2,8 +2,10 @@ package controllers
 
 import (
 	"github.com/revel/revel"
+	"github.com/russross/blackfriday"
 	"goblog/app/models"
 	"goblog/app/routes"
+	"html/template"
 )
 
 type Post struct {
@@ -32,6 +34,9 @@ func (c Post) CheckUser() revel.Result {
 func (c Post) Index() revel.Result {
 	var posts []models.Post
 	c.Txn.Order("created_at desc").Find(&posts)
+	for i, p := range posts {
+		posts[i].HtmlBody = template.HTML(string(blackfriday.MarkdownCommon([]byte(p.Body))))
+	}
 	return c.Render(posts)
 }
 
@@ -39,6 +44,7 @@ func (c Post) Show(id int) revel.Result {
 	var post models.Post
 	c.Txn.First(&post, id)
 	c.Txn.Where(&models.Comment{PostId: id}).Find(&post.Comments)
+	post.HtmlBody = template.HTML(string(blackfriday.MarkdownCommon([]byte(post.Body))))
 	return c.Render(post)
 }
 

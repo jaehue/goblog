@@ -6,7 +6,7 @@
   <p class="blog-post-meta">{{formatDate .post.CreatedAt}}</p>
 
   <p>
-    {{.post.Body}}
+    {{.post.HtmlBody}}
   </p>
 
   {{if isAdmin .currentUser}}
