@@ -30,11 +30,6 @@ func (c User) Edit() revel.Result {
 }
 
 func (c User) Update(name, oldPassword, newPassword, newPasswordConfirm string) revel.Result {
-	if newPassword != newPasswordConfirm {
-		c.Flash.Error("Password doesn't match the confirmation.")
-		return c.Redirect(User.Edit)
-	}
-
 	if err := bcrypt.CompareHashAndPassword(c.CurrentUser.Password, []byte(oldPassword)); err != nil {
 		c.Flash.Error("Old password isn't valid.")
 		return c.Redirect(User.Edit)
@@ -43,8 +38,17 @@ func (c User) Update(name, oldPassword, newPassword, newPasswordConfirm string) 
 	var user models.User
 	c.Txn.First(&user, c.CurrentUser.Id)
 	user.Name = name
-	bcryptPassword, _ := bcrypt.GenerateFromPassword([]byte(newPassword), bcrypt.DefaultCost)
-	user.Password = bcryptPassword
+
+	if newPassword != "" && newPasswordConfirm != "" {
+		if newPassword == newPasswordConfirm {
+			bcryptPassword, _ := bcrypt.GenerateFromPassword([]byte(newPassword), bcrypt.DefaultCost)
+			user.Password = bcryptPassword
+		} else {
+			c.Flash.Error("Password doesn't match the confirmation.")
+			return c.Redirect(User.Edit)
+		}
+	}
+
 	c.Txn.Save(&user)
 	return c.Redirect(Home.Index)
 }
