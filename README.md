@@ -48,8 +48,6 @@ $ revel run goblog
   - Role: admin
   - Password: admin
 
-**YOU MUST CHANGE DEFAULT PASSWROD**
-
 ## Deploy to Heroku
 
 ### Setup
@@ -105,7 +103,6 @@ $ revel run goblog
 
 Complete!
   
-  
 
 ### Deploy
 
@@ -127,6 +124,8 @@ remote:        Installing Mercurial... done
 ...
 ```
 
+**YOU MUST CHANGE DEFAULT PASSWROD**  
+
 ## Contributing
 
 1. Fork it ( https://github.com/jaehue/goblog/fork )
@@ -134,6 +133,11 @@ remote:        Installing Mercurial... done
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
+
+
+## Tutorial
+
+- [Revel Tutorial: Build a Blog(KR)](https://github.com/jaehue/goblog/wiki/Revel-Tutorial%3A-Build-a-Blog%28KR%29)
 
 ## Questions
 
