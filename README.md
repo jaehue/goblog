@@ -4,6 +4,8 @@ A fast and simple blog with [Revel](http://revel.github.io/) framework in Golang
 
 Current version is **0.1.0** on 2015.01.10
 
+You can test the latest version at http://goblog.jang.io.
+
 ## Getting started
 
 ```
