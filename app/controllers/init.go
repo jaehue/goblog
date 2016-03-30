@@ -1,9 +1,10 @@
 package controllers
 
 import (
-	"github.com/revel/revel"
 	"goblog/app/models"
 	"log"
+
+	"github.com/revel/revel"
 )
 
 func (c *App) setCurrentUser() revel.Result {

@@ -8,4 +8,3 @@ type App struct {
 	GormController
 	CurrentUser *models.User
 }
-

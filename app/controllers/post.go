@@ -1,9 +1,10 @@
 package controllers
 
 import (
-	"github.com/revel/revel"
 	"goblog/app/models"
 	"goblog/app/routes"
+
+	"github.com/revel/revel"
 )
 
 type Post struct {

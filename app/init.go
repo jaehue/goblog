@@ -1,9 +1,10 @@
 package app
 
 import (
-	"github.com/revel/revel"
 	"goblog/app/models"
 	"time"
+
+	"github.com/revel/revel"
 )
 
 func init() {
