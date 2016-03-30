@@ -1,9 +1,10 @@
 package controllers
 
 import (
-	"code.google.com/p/go.crypto/bcrypt"
-	"github.com/revel/revel"
 	"goblog/app/models"
+
+	"github.com/revel/revel"
+	"golang.org/x/crypto/bcrypt"
 )
 
 type User struct {

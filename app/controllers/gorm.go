@@ -1,10 +1,11 @@
 package controllers
 
 import (
-	"code.google.com/p/go.crypto/bcrypt"
+	"goblog/app/models"
+
 	"github.com/jinzhu/gorm"
 	"github.com/revel/revel"
-	"goblog/app/models"
+	"golang.org/x/crypto/bcrypt"
 )
 
 var (

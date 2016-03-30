@@ -22,10 +22,10 @@ https://golang.org/doc/install
 
 ```
 $ go get github.com/revel/revel
-$ go get go get github.com/revel/cmd/revel
+$ go get github.com/revel/cmd/revel
 $ go get github.com/jinzhu/gorm
 $ go get github.com/mattn/go-sqlite3
-$ go get code.google.com/p/go.crypto/bcrypt
+$ go get golang.org/x/crypto/bcrypt
 ```
 
 ### 3. Get the code
